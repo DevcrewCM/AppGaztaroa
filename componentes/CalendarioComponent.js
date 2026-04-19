@@ -3,7 +3,8 @@ import { FlatList, View, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { List, Divider } from 'react-native-paper';
 
-function Calendario({ excursiones }) {
+// 1. Añadimos onPress aquí en los parámetros
+function Calendario({ excursiones, onPress }) {
   const renderCalendarioItem = ({ item }) => {
     return (
       <View>
@@ -12,6 +13,8 @@ function Calendario({ excursiones }) {
           description={item.descripcion}
           titleNumberOfLines={0}
           descriptionNumberOfLines={6}
+          // 2. Añadimos la acción onPress aquí abajo
+          onPress={() => onPress(item.id)}
           left={(props) => (
             <Image
               source={require('./imagenes/40Anos.png')}
