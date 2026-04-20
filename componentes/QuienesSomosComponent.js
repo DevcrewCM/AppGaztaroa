@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, StyleSheet, FlatList } from 'react-native';
 import { Card, Text, List, Avatar } from 'react-native-paper';
 import { ACTIVIDADES } from '../comun/actividades';
+import { baseUrl } from '../comun/comun';
 
 function Historia() {
     return (
@@ -35,7 +36,7 @@ class QuienesSomos extends Component {
                     title={item.nombre}
                     description={item.descripcion}
                     descriptionNumberOfLines={10}
-                    left={() => <Avatar.Image source={require('./imagenes/40Anos.png')} size={50} style={styles.imagen} />}
+                    left={() => <Avatar.Image source={{ uri: baseUrl + item.imagen }} size={50} style={styles.imagen} />}
                 />
             );
         };

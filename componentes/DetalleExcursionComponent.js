@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView, FlatList, ImageBackground } from 'react-n
 import { Card, Text, Divider, IconButton } from 'react-native-paper';
 import { EXCURSIONES } from '../comun/excursiones';
 import { COMENTARIOS } from '../comun/comentarios';
+import { baseUrl } from '../comun/comun';
 
 function RenderExcursion(props) {
   const excursion = props.excursion;
@@ -10,7 +11,7 @@ function RenderExcursion(props) {
     return (
       <Card style={styles.card}>
         <ImageBackground
-          source={require('./imagenes/40Anos.png')}
+          source={{ uri: baseUrl + excursion.imagen }}
           style={styles.imageBackground}
         >
           <Text style={styles.cardTitle}>{excursion.nombre}</Text>
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   cardTitle: {
-    color: 'chocolate',
+    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
   },

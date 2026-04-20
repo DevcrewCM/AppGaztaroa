@@ -4,6 +4,7 @@ import { Card } from 'react-native-paper';
 import { CABECERAS } from '../comun/cabeceras';
 import { EXCURSIONES } from '../comun/excursiones';
 import { ACTIVIDADES } from '../comun/actividades';
+import { baseUrl } from '../comun/comun';
 
 function RenderItem(props) {
     const item = props.item;
@@ -11,7 +12,7 @@ function RenderItem(props) {
         return (
             <Card style={styles.card}>
                 <ImageBackground 
-                    source={require('./imagenes/40Anos.png')} 
+                    source={{ uri: baseUrl + item.imagen }} 
                     style={styles.imageBackground}
                 >
                     <Text style={styles.cardTitle}>{item.nombre}</Text>
