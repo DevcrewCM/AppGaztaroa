@@ -12,6 +12,15 @@ import Home from './HomeComponent';
 import Contacto from './ContactoComponent';
 import QuienesSomos from './QuienesSomosComponent';
 import { colorGaztaroaClaro, colorGaztaroaOscuro } from '../comun/comun';
+import { connect } from 'react-redux';
+import { fetchExcursiones, fetchComentarios, fetchCabeceras, fetchActividades } from '../redux/ActionCreators';
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchExcursiones: () => dispatch(fetchExcursiones()),
+  fetchComentarios: () => dispatch(fetchComentarios()),
+  fetchCabeceras: () => dispatch(fetchCabeceras()),
+  fetchActividades: () => dispatch(fetchActividades()),
+});
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -201,6 +210,13 @@ function DrawerNavegador() {
 }
 
 class Campobase extends Component {
+  componentDidMount() {
+    this.props.fetchExcursiones();
+    this.props.fetchComentarios();
+    this.props.fetchCabeceras();
+    this.props.fetchActividades();
+  }
+
   render() {
     return (
       <NavigationContainer>
@@ -244,4 +260,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Campobase;
+export default connect(null, mapDispatchToProps)(Campobase);
