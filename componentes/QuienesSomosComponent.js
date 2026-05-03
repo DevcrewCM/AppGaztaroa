@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, FlatList } from 'react-native';
+import { ScrollView, StyleSheet, FlatList, View } from 'react-native';
 import { Card, Text, List, Avatar } from 'react-native-paper';
 import { baseUrl } from '../comun/comun';
 import { connect } from 'react-redux';
+import { IndicadorActividad } from './IndicadorActividadComponent';
 
 const mapStateToProps = state => {
     return {
@@ -47,12 +48,18 @@ class QuienesSomos extends Component {
                 <Card style={styles.card}>
                     <Card.Title title="Actividades y recursos" />
                     <Card.Content>
-                        <FlatList
-                            scrollEnabled={false}
-                            data={this.props.actividades.actividades}
-                            renderItem={renderActividadItem}
-                            keyExtractor={(item) => item.id.toString()}
-                        />
+                        {this.props.actividades.isLoading ? (
+                            <IndicadorActividad />
+                        ) : this.props.actividades.errMess ? (
+                            <Text>{this.props.actividades.errMess}</Text>
+                        ) : (
+                            <FlatList
+                                scrollEnabled={false}
+                                data={this.props.actividades.actividades}
+                                renderItem={renderActividadItem}
+                                keyExtractor={(item) => item.id.toString()}
+                            />
+                        )}
                     </Card.Content>
                 </Card>
             </ScrollView>
